@@ -1,0 +1,38 @@
+*** Settings ***
+Resource          ../Keywords/super.txt
+
+*** Test Cases ***
+TC01: Validate Life Asia Policy Creations
+    [Setup]    Open AS400 Console    ${GlobalConnFilePath}
+    [Timeout]    50 minutes
+    ${loginStatus}    Login Into Application    ${GlobalUserName}    ${GlobalPassword}
+    ${messageDetails}    Get Messages
+    Run Keyword If    ${loginStatus}==False    Fail and Capture ScreenShot    Login into application was failed.Error Details: ${messageDetails}
+    Validate Creation Of Inward Trnsaction and Policy Creation
+    ${logoutStatus}    Logout From Application
+    Run Keyword If    ${logoutStatus}==False    Fail and Capture ScreenShot    Logout from application was failed.
+    [Teardown]    Close AS400 Console
+
+TC02: Check Cursor Position
+    [Setup]    Open AS400 Console    ${GlobalConnFilePath}
+    [Timeout]    50 minutes
+    ${connectionsCount}    Get Connection Count
+    Log    connectionsCount: ${connectionsCount}
+    ${loginScreenStatus}    Wait For Text    User Name
+    Log    ${loginScreenStatus}
+    ${messageDetails}    Get Messages
+    Sleep    10s
+    ${curPosition}    Get Cursor Position
+    Log    ${curPosition}
+    [Teardown]    Close AS400 Console
+
+TC02: Test Data O/P Files
+    [Setup]
+    [Timeout]    50 minutes
+    ${timeStamp}    Get Time
+    ${timeStamp}    Replace String    ${timeStamp}    :    _
+    ${timeStamp}    Replace String    ${timeStamp}    -    _
+    Log    ${timeStamp}
+    ${outputFilePath}    Set Variable    ${EXECDIR}\\Results\\Output${timeStamp}.csv
+    Create New Inward Transaction
+    [Teardown]

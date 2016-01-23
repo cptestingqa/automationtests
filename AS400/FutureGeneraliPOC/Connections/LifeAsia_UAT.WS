@@ -1,0 +1,27 @@
+[Profile]
+ID=WS
+Version=9
+[CT]
+trace=Y
+[Telnet5250]
+HostName=10.1.41.64
+HostPortNumber=992
+AssociatedPrinterStartMinimized=N
+AssociatedPrinterClose=N
+AssociatedPrinterTimeout=0
+Security=Y
+SSLClientAuthentication=Y
+CertSelection=AUTOSELECT
+[Communication]
+Link=telnet5250
+Session=5250
+[5250]
+HostCodePage=037-U
+PrinterType=IBM3812
+[Keyboard]
+CuaKeyboard=2
+Language=United-States
+IBMDefaultKeyboard=N
+DefaultKeyboard=\AS400.KMP
+[LastExitView]
+A=4 22 22 909 512 3 12 24 400 0 IBM3270— 37

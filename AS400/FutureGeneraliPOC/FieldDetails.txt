@@ -1,0 +1,143 @@
+*************Extracting all the fields in the Screen***************
+Field Index: 1 Field label: 
+Field Index: 2 Field label: FGPACT UAT CO:1 
+Field Index: 3 Field label:        
+Field Index: 4 Field label: Inward Transaction Details
+Field Index: 5 Field label: Create    
+Field Index: 6 Field label:      
+Field Index: 7 Field label: SZ371
+Field Index: 8 Field label: 01
+Field Index: 9 Field label: Sr Branch:
+Field Index: 10 Field label: 10
+Field Index: 11 Field label: 
+Field Index: 12 Field label: Dept:
+Field Index: 13 Field label: PP
+Field Index: 14 Field label: 
+Field Index: 15 Field label: Tr.Typ:
+Field Index: 16 Field label: Inwarding-New Business        
+Field Index: 17 Field label: 
+Field Index: 18 Field label: Maj Class:
+Field Index: 19 Field label:    
+Field Index: 20 Field label: Inwd No:
+Field Index: 21 Field label: 10/PP/A00012197     
+Field Index: 22 Field label: PolNo:
+Field Index: 23 Field label:           
+Field Index: 24 Field label: CntTyp:
+Field Index: 25 Field label:    
+Field Index: 26 Field label: Old PolNo:
+Field Index: 27 Field label:         
+Field Index: 28 Field label: Contract Owner :
+Field Index: 29 Field label:                                                   
+Field Index: 30 Field label:            
+Field Index: 31 Field label: InwDt:
+Field Index: 32 Field label: 06/11/2015
+Field Index: 33 Field label: App No:
+Field Index: 34 Field label: B0030734        
+Field Index: 35 Field label: MIS Agnt:
+Field Index: 36 Field label:           
+Field Index: 37 Field label: DISC %:
+Field Index: 38 Field label:        
+Field Index: 39 Field label: Client Name:
+Field Index: 40 Field label:                                                   
+Field Index: 41 Field label: Rate:
+Field Index: 42 Field label:  
+Field Index: 43 Field label:        
+Field Index: 44 Field label: Agent Code  :
+Field Index: 45 Field label:           
+Field Index: 46 Field label:                                                
+Field Index: 47 Field label:       
+Field Index: 48 Field label: FGI Channel :
+Field Index: 49 Field label:    
+Field Index: 50 Field label:                               
+Field Index: 51 Field label:  
+Field Index: 52 Field label: Premium:
+Field Index: 53 Field label:                    
+Field Index: 54 Field label: SM:
+Field Index: 55 Field label:         
+Field Index: 56 Field label:                                     
+Field Index: 57 Field label: 
+Field Index: 58 Field label: Ref:
+Field Index: 59 Field label:                        
+Field Index: 60 Field label: Bank Branch :
+Field Index: 61 Field label:           
+Field Index: 62 Field label:                                                   
+Field Index: 63 Field label:    
+Field Index: 64 Field label: Oth-Fil No:
+Field Index: 65 Field label:                          
+Field Index: 66 Field label: O-F Typ:
+Field Index: 67 Field label:   
+Field Index: 68 Field label:           
+Field Index: 69 Field label: O-F Dt:
+Field Index: 70 Field label:           
+Field Index: 71 Field label: ColA/C:
+Field Index: 72 Field label:   
+Field Index: 73 Field label: PayMth:
+Field Index: 74 Field label:  
+Field Index: 75 Field label: InsNo:
+Field Index: 76 Field label:           
+Field Index: 77 Field label: InstAmt/Dt:
+Field Index: 78 Field label:                  
+Field Index: 79 Field label:           
+Field Index: 80 Field label:           
+Field Index: 81 Field label: PayMth:
+Field Index: 82 Field label:  
+Field Index: 83 Field label: InsNo:
+Field Index: 84 Field label:           
+Field Index: 85 Field label: InstAmt/Dt:
+Field Index: 86 Field label:                  
+Field Index: 87 Field label:           
+Field Index: 88 Field label: InsFrm:
+Field Index: 89 Field label:                                         
+Field Index: 90 Field label: Make/Mdl:
+Field Index: 91 Field label:                     
+Field Index: 92 Field label: Trn.Status:
+Field Index: 93 Field label: 05
+Field Index: 94 Field label: Pending For Processing        
+Field Index: 95 Field label: CoverNote/Dt:
+Field Index: 96 Field label:         
+Field Index: 97 Field label:           
+Field Index: 98 Field label: Category:
+Field Index: 99 Field label:         
+Field Index: 100 Field label: Reason:
+Field Index: 101 Field label:                                         
+Field Index: 102 Field label:            
+Field Index: 103 Field label: Pay No:
+Field Index: 104 Field label:          
+Field Index: 105 Field label: LeadPolNo:
+Field Index: 106 Field label:                               
+Field Index: 107 Field label: Initiator:
+Field Index: 108 Field label:         
+Field Index: 109 Field label: Disc Cat:
+Field Index: 110 Field label:         
+Field Index: 111 Field label: 
+Field Index: 112 Field label: Disc Resolutn Dt:
+Field Index: 113 Field label:           
+Field Index: 114 Field label: Disc/Rfnd Letter Typ:
+Field Index: 115 Field label:         
+Field Index: 116 Field label: Disc Reason:
+Field Index: 117 Field label:                                                             
+Field Index: 118 Field label:                   
+Field Index: 119 Field label:                                                             
+Field Index: 120 Field label:      
+Field Index: 121 Field label: Remarks    :
+Field Index: 122 Field label:                                                             
+Field Index: 123 Field label:      
+Field Index: 124 Field label: IDV:
+Field Index: 125 Field label:                 
+Field Index: 126 Field label: Tran Dt:
+Field Index: 127 Field label: 06/11/2015
+Field Index: 128 Field label: IssDt:
+Field Index: 129 Field label:           
+Field Index: 130 Field label: User Id:
+Field Index: 131 Field label: TENX01    
+Field Index: 132 Field label: 
+Field Index: 133 Field label: F1=Help
+Field Index: 134 Field label: 
+Field Index: 135 Field label: F3=Exit
+Field Index: 136 Field label: 
+Field Index: 137 Field label: F4=Prompt
+Field Index: 138 Field label: 
+Field Index: 139 Field label: F5=Refresh
+Field Index: 140 Field label:                                        
+Field Index: 141 Field label:                                                                               
+*************End of - Extracting all the fields in the Screen***************
