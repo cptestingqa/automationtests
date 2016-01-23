@@ -1,0 +1,2 @@
+*** Settings ***
+Documentation     Test Data directory contains external spreadsheets (MS-Excel) filled up with testdata required for testcases.

@@ -1,0 +1,14 @@
+*** Settings ***
+Documentation     Super.txt is a resource file that contains references to all the other resource files in Keywords directory and different Libraries. The advantage of having a Super.txt file is that, if we add another resource file that is required for existing testcases, we have to manually locate each individual testcase and associate it. So, to get rid of the manual effort, simply place it in Super.txt !!
+Resource          common.txt
+Resource          global.txt
+Resource          login.txt
+Library           Selenium2Library
+Library           OperatingSystem
+Library           String
+Library           Dialogs
+Library           AutoItLibrary
+Library           ../Library/CommonLibrary.py
+Library           Collections
+Resource          ../Objects/Objects.txt
+Library           AutoItLibrary

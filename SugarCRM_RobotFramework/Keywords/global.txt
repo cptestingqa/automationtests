@@ -1,0 +1,21 @@
+*** Settings ***
+Documentation     Global variables that are used across Keywords, Test Cases are declared in this resource file.
+Resource          super.txt
+
+*** Variables ***
+${BROWSER}        FireFox
+${LOGIN URL}      http://127.0.0.1:8086/sugarcrm/index.php
+${VALID USERNAME}    admin
+${VALID PASSWORD}    admin123
+${DELAY}          5s
+${INVALID USERNAME}    admin
+${INVALID PASSWORD}    KPN111
+${SALUTATION NAME}    Mr.
+${FIRST NAME}     QA
+${LAST NAME}      USER
+${PHONE NUMBER}    90000000000
+${ASSIGNED USER NAME}    admin
+${LEAD SOURCE NAME}    Employee
+${firefoxProfilePath}    ${EXECDIR}\\Library\\Firefoxprofile
+${intTimeout}     30s
+${downloadFolderPath}    %{USERPROFILE}\\Downloads

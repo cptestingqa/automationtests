@@ -1,0 +1,32 @@
+*** Settings ***
+Resource          super.txt
+
+*** Keywords ***
+Login to Application
+    [Arguments]    ${url}    ${username}    ${password}
+    [Documentation]    Login to the application and checks home page appears
+    [Timeout]
+    Start Application    ${url}
+    Wait Until Page Contains Element    ${button.login.login}    10s    Login Page is not displayed
+    Delete All Cookies
+    Wait Until Page Contains Element    ${text.login.username}    30s
+    Input Text    ${text.login.username}    ${username}
+    Input Password    ${text.login.password}    ${password}
+    Click Element    ${button.login.login}
+    Sleep    ${DELAY}
+
+Home Page Should Contain
+    [Documentation]    Verifies that Home page contains logout link after successful login.
+    Wait Until Page Contains Element    ${link.home.logout}    40s    Login Not Successful
+
+Validate Valid and Invalid Credentials
+    [Arguments]    ${statusOfCriteria}
+    [Documentation]    1. Verify whether an "Error Message" is displayed after entering Invalid credentials.
+    ...
+    ...    2. Verify whether "Home Page" is displayed after entering Valid credentials.
+    Comment    1. Verify whether an "Error Message" is displayed after entering Invalid credentials.    \ 2. Verify whether "Home Page" is displayed after entering Valid credentials.
+    Run Keyword If    '${statusOfCriteria}'=='Valid'    Home Page Should Contain
+    Run Keyword If    '${statusOfCriteria}'!='Valid'    Wait Until Page Contains Element    ${label.login.errorMessage}    3s    An Error Message should be displayed upon Invalid Login credentials, but it's not displayed.
+    ${InvalidMessage}=    Run Keyword If    '${statusOfCriteria}'!='Valid'    Get Text    ${label.login.errorMessage}
+    Run Keyword If    '${statusOfCriteria}'!='Valid'    Should Be Equal    ${InvalidMessage}    You must specify a valid username and password.
+    Sleep    1s

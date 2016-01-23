@@ -1,0 +1,142 @@
+*** Settings ***
+Resource          ../Keywords/super.txt
+
+*** Test Cases ***
+Validate Login With Valid Credentials
+    [Documentation]    1. Login to Application with valid credentials.
+    ...
+    ...    2. Verify whether "Home Page" is displayed after login to application with valid credentials.
+    ...
+    ...    3. Logout from the Application post test case execution.
+    Comment    Login to Application with valid credentials.
+    Start Application    ${LOGIN URL}
+    Remove File    ${downloadFolderPath}\\calls.csv
+    Comment    Enter username and password for login to application.
+    Input Text    ${text.login.username}    ${VALID USERNAME}
+    Input Password    ${text.login.password}    ${VALID PASSWORD}
+    Click Element    ${button.login.login}
+    Comment    Verify whether "Home Page" is displayed after login to application with valid credentials.
+    Wait Until Page Contains Element    ${link.common.Home}/parent::td    ${intTimeout}
+    ${selectTabStatus}=    Get Element Attribute    ${link.common.Home}/parent::td@class
+    Run Keyword If    '${selectTabStatus}'!='currentTab'    Fail    The Home Page is not displayed after login to application.
+    Menu Select    Activities
+    Wait Until Element Is Visible    //input[@type='checkbox' and @name='massall']
+    Click Element    //input[@type='checkbox' and @name='massall']
+    Wait Until Element Is Visible    //input[@type='button' and @value='Export']
+    Click Element    //input[@type='button' and @value='Export']
+    Wait Until Created    ${downloadFolderPath}\\calls.csv
+    File Should Exist    ${downloadFolderPath}\\calls.csv
+    ${logoutStatus}=    Verify Element Visible    ${link.home.logout}
+    Run Keyword If    '${logoutStatus}'=='True'    Click Element    ${link.home.logout}
+    [Teardown]    Close Browser
+
+Validate Login With Invalid Credentials
+    [Documentation]    1. Login to Application with Invalid credentials.
+    ...
+    ...    2. Verified whether Error Message is displayed or not on Invlaid attempt to Login.Fails if no Error Message is displayed.
+    [Setup]
+    Comment    Login to Application with Invalid credentials.
+    Start Application    ${LOGIN URL}
+    Comment    Enter username and password for login to application.
+    Input Text    ${text.login.username}    ${INVALID USERNAME}
+    Input Password    ${text.login.password}    ${INVALID PASSWORD}
+    Click Element    ${button.login.login}
+    Comment    Verify whether Error Message is displayed when invalid credentials are entered.    The testcase fails if the expected Error Message is not displayed.
+    Wait Until Page Contains Element    ${label.login.errorMessage}    ${intTimeout}
+    ${statusOfInvalidMessage}=    Verify Element Present    ${label.login.errorMessage}
+    ${InvalidMessage}=    Run Keyword If    ${statusOfInvalidMessage}    Get Text    ${label.login.errorMessage}
+    Run Keyword If    ${statusOfInvalidMessage}    Should Be Equal    ${InvalidMessage}    You must specify a valid username and password.
+    [Teardown]    Close Browser
+
+Validate Create Contact
+    [Documentation]    1. Login to Application with valid credentials.
+    ...
+    ...    2. Verify whether "Contacts" Page is displayed or not after clicking on "Create Contact" link.
+    ...
+    ...    3. Enter the contact details in Contact page fields.
+    ...
+    ...    4. Verify the Contact Name is saved after clicking on "Save" button in Contact Details page.
+    [Setup]    Start Application    ${LOGIN URL}
+    Comment    Enter username and password for login to application.
+    Input Text    ${text.login.username}    ${VALID USERNAME}
+    Input Password    ${text.login.password}    ${VALID PASSWORD}
+    Click Element    ${button.login.login}
+    Comment    Verify whether "Contacts" page is displayed after clicking on "Create Contact" link.
+    Wait Until Page Contains Element    ${link.common.CreateContact}    ${intTimeout}
+    Click Element    ${link.common.CreateContact}
+    Wait Until Page Contains Element    ${link.common.Contacts}/parent::td    ${intTimeout}
+    ${selectTabStatus}=    Get Element Attribute    ${link.common.Contacts}/parent::td@class
+    Run Keyword If    '${selectTabStatus}'!='currentTab'    Fail    The Contact Page is Not dispalyed after clicking on " Create Contact" link.
+    Comment    Enter various contact details in Contact page fields.
+    Select From List By Value    ${list.contact.salutation}    ${SALUTATION NAME}
+    Input Text    ${text.contact.firstName}    ${FIRST NAME}
+    ${randomNumber}    Get Random Number In Given Range    1    1000
+    Input Text    ${text.contact.lastName}    ${LAST NAME}${randomNumber}
+    Input Text    ${text.contact.phoneNumber}    ${PHONE NUMBER}
+    Click Element    ${button.contact.accountSearch}
+    Sleep    2s
+    Comment    Get the window names and select the desired window.
+    @{windowNames}=    Get Window Names
+    Select Window    popup_window
+    Maximize Browser Window
+    Select From List By Label    ${list.contact.assignedUser}    ${ASSIGNED USER NAME}
+    Click Element    //a[contains(text(),'2 Tall Stores 731951')]
+    Select Window
+    Select From List By Value    ${list.contact.leadSource}    ${LEAD SOURCE NAME}
+    Click Element    ${text.contact.dontCall}
+    Click Element    ${button.contact.save}
+    Comment    Verify the Contact Name is saved after clicking on "Save" button in Contact Details page.
+    Wait Until Page Contains Element    ${table.contact.contactTextName}    ${intTimeout}
+    ${contactName}=    Get Text    ${table.contact.contactTextName}
+    ${contactName}    Split String    ${contactName}    :
+    Log    ${SALUTATION NAME}${SPACE}${FIRST NAME}${SPACE}${LAST NAME}${randomNumber}
+    ${status}=    String Should Contain    ${contactName}[1]    ${SALUTATION NAME}${SPACE}${FIRST NAME}${SPACE}${LAST NAME}${randomNumber}
+    Run Keyword If    '${status}'=='True'    Set Test Message    The Contact name "${SALUTATION NAME}${SPACE}${FIRST NAME}${SPACE}${LAST NAME}${randomNumber}" is created.    ELSE    Fail    The Contact name "${SALUTATION NAME}${SPACE}${FIRST NAME}${SPACE}${LAST NAME}${randomNumber}" is Not created.
+    Comment    Logouts from the Application.
+    ${logoutStatus}=    Verify Element Visible    ${link.home.logout}
+    Run Keyword If    '${logoutStatus}'=='True'    Click Element    ${link.home.logout}
+    [Teardown]    Stop Application
+
+Validate Login With Multiple Credentials From List
+    [Documentation]    1. Login to Application with valid and invalid credentials from List.
+    ...
+    ...    2. Verify whether "Error Message" is displayed after entering Invalid Credentials.
+    ...
+    ...    3. Verify whether "Home Page" is displayed after entering Valid Credentials.
+    @{listOfUserNames}=    Create List    Demo    admn    admin
+    @{listOfPasswords}=    Create List    d123    ${SPACE}    admin123
+    @{listOfStatus}=    Create List    Invalid    Invalid    Valid
+    ${listOfUserNames}=    Set Variable    @{listOfUserNames}
+    ${lengthOfList}=    Get Length    ${listOfUserNames}
+    @{listOfUserNames}=    Set Variable    ${listOfUserNames}
+    : FOR    ${iCounter}    IN RANGE    0    ${lengthOfList}
+    \    Comment    Login to Application with multiple credentials.
+    \    Start Application    ${LOGIN URL}
+    \    Input Text    ${text.login.username}    @{listOfUserNames}[${iCounter}]
+    \    Input Password    ${text.login.password}    @{listOfPasswords}[${iCounter}]
+    \    Click Element    ${button.login.login}
+    \    Comment    Verify whether "Error Message" \ is displayed when Valid and Invalid credentials are entered.
+    \    Run Keyword If    '@{listOfStatus}[${iCounter}]'=='Valid'    Home Page Should Contain
+    \    Run Keyword If    '@{listOfStatus}[${iCounter}]'!='Valid'    Wait Until Page Contains Element    ${label.login.errorMessage}    3s    An Error Message should be Displayed on Invalid Login but it's not displayed.
+    \    ${InvalidMessage}=    Run Keyword If    '@{listOfStatus}[${iCounter}]'!='Valid'    Get Text    ${label.login.errorMessage}
+    \    Run Keyword If    '@{listOfStatus}[${iCounter}]'!='Valid'    Should Be Equal    ${InvalidMessage}    You must specify a valid username and password.
+    \    Close All Browsers
+    [Teardown]    Close Browser
+
+Validate Login With Multiple Credentials From Data Sheet
+    [Documentation]    1. Login to Application with valid and invalid credentials from Data sheet (Excel).
+    ...
+    ...    2. Verified whether "Error Message" Present or Not after entering with valid and Invalid Credentials.
+    Comment    Login to Application with valid and invalid credentials from Data sheet(Excel).
+    ${excelRowsCount}=    Get Ms Excel File Rows Count    ${EXECDIR}\\TestData\\DemoSpreadSheet.xls
+    ${columnsNames}    Get Ms Excel Row Values Into List    ${EXECDIR}\\TestData\\DemoSpreadSheet.xls    1
+    ${userNamesIndex}    Get Index From List    ${columnsNames}    Username
+    ${passwordIndex}    Get Index From List    ${columnsNames}    Password
+    ${criteriaIndex}=    Get Index From List    ${columnsNames}    Criteria
+    : FOR    ${iCounter}    IN RANGE    2    ${excelRowsCount}+1
+    \    @{loginDetails}=    Get Ms Excel Row Values Into List    ${EXECDIR}\\TestData\\DemoSpreadSheet.xls    ${iCounter}
+    \    Login to Application    ${LOGIN URL}    @{loginDetails}[${userNamesIndex}]    @{loginDetails}[${passwordIndex}]
+    \    Comment    Verified whether "Error Message" Present or Not after entering with valid and Invalid Credentials.
+    \    Validate Valid and Invalid Credentials    @{loginDetails}[${criteriaIndex}]
+    \    Close Browser
+    [Teardown]    Close Browser

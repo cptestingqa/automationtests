@@ -1,0 +1,10 @@
+*** Settings ***
+Documentation     1. This resource file contains all the objects that belong to TABLE category existing in the application or corresponding to a module.
+...
+...               2. Each object is defined in the below mentioned format:
+...
+...               ${ObjectType.ModuleName.ObjectName}
+Resource          objects.txt
+
+*** Variables ***
+${table.contact.contactTextName}    //table[@class='moduleTitle']//h2

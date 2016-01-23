@@ -1,0 +1,11 @@
+*** Settings ***
+Documentation     1. This resource file contains all the objects that belong to LABELS category existing in the application or corresponding to a module.
+...
+...               2. Each object is defined in the below mentioned format:
+...
+...               ${ObjectType.ModuleName.ObjectName}
+Resource          objects.txt
+
+*** Variables ***
+${label.login.errorMessage}    //span[contains(text(),'Error:')]/parent::td/parent::tr/td[2]//span[@class='error']
+${label.home.username}    //td[@id='welcome']/strong

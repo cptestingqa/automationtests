@@ -1,0 +1,38 @@
+*** Settings ***
+Documentation     Most common reusable keywords like Logout, Select menu can be found in this resource file.
+Resource          super.txt
+
+*** Keywords ***
+Start Application
+    [Arguments]    ${URL}    ${strBrowser}=${BROWSER}
+    [Documentation]    Open the application in the specified browser in maximized window
+    ${chromeBrowserStatus}    Evaluate    '${BROWSER.lower()}'=='chrome' or '${BROWSER.lower()}'=='gc'
+    ${chrome_options}    Get Chrome Browser Options
+    ${kwargs}    Create Dictionary    chrome_options=${chrome_options}
+    Run Keyword If    ${chromeBrowserStatus}==True    Create Webdriver    Chrome    kwargs=${kwargs}
+    Run Keyword If    ${chromeBrowserStatus}==True    Go To    ${URL}
+    ${firefoxBrowserStatus}    Evaluate    '${BROWSER.lower()}'=='firefox' or '${BROWSER.lower()}'=='ff'
+    Run Keyword If    ${firefoxBrowserStatus}==True    Open Browser    ${URL}    ${BROWSER}    \    ${EMPTY}
+    ...    \    ${firefoxProfilePath}
+    ${otherBrowserStatus}    Evaluate    ${chromeBrowserStatus}==False and ${firefoxBrowserStatus}==False
+    Run Keyword If    ${otherBrowserStatus}==True    Open Browser    ${URL}    ${BROWSER}
+    Maximize Browser Window
+    AutoItLibrary.Mouse Move    5    5
+
+Stop Application
+    [Documentation]    Open the application in the specified browser in maximized window
+    Capture Page Screenshot
+    Close All Browsers
+
+Logout
+    [Documentation]    Logout of the application
+    Click Element    ${link.home.logout}
+    Sleep    3s
+
+Menu Select
+    [Arguments]    ${mainmenuitem}
+    Wait Until Page Contains Element    ${link.common.${mainmenuitem}}    4s
+    Click Element    ${link.common.${mainmenuitem}}
+    Sleep    2s
+    ${selectTabStatus}=    Get Element Attribute    //a[contains(text(),'${mainmenuitem}')]/parent::td@class
+    Run Keyword If    '${selectTabStatus}'!='currentTab'    Fail    The ${mainmenuitem} Page is Not dispalyed after clicking on the ${mainmenuitem} tab.

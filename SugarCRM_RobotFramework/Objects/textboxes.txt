@@ -1,0 +1,15 @@
+*** Settings ***
+Documentation     1. This resource file contains all the objects that belong to TEXT BOX category existing in the application or corresponding to a module.
+...
+...               2. Each object is defined in the below mentioned format:
+...
+...               ${ObjectType.ModuleName.ObjectName}
+Resource          objects.txt
+
+*** Variables ***
+${text.login.username}    //input[@id='user_name']
+${text.login.password}    //input[@name='user_password']
+${text.contact.firstName}    //input[@name='first_name']
+${text.contact.lastName}    //input[@id='last_name']
+${text.contact.phoneNumber}    //input[@id='phone_mobile']
+${text.contact.dontCall}    //input[@id='do_not_call']

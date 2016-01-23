@@ -1,0 +1,10 @@
+*** Settings ***
+Documentation     This resource file contains references of other resource files that belong to a particular object category i.e. Buttons, Dropdowns, Images etc.
+Resource          buttons.txt
+Resource          dropdown.txt
+Resource          headers.txt
+Resource          links.txt
+Resource          labels.txt
+Resource          images.txt
+Resource          textboxes.txt
+Resource          tables.txt

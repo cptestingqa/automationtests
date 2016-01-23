@@ -1,0 +1,25 @@
+*** Settings ***
+Resource          ../Keywords/super.txt
+
+*** Test Cases ***
+Validate Gmail Login With Valid Credentials
+    [Documentation]    1. Login to Application with valid credentials.
+    ...
+    ...    2. Verify whether "Home Page" is displayed after login to application with valid credentials.
+    ...
+    ...    3. Logout from the Application post test case execution.
+    Comment    Login to Application with valid credentials.
+    ${VALID USERNAME}    Set Variable    cptestingqa
+    ${VALID PASSWORD}    Set Variable    tenx@123
+    Start Application    http://www.gmail.com/
+    Comment    Enter username and password for login to application.
+    Wait Until Element Is Visible    Email    ${DELAY}
+    Input Text    Email    ${VALID USERNAME}
+    Click Element    next
+    Wait Until Element Is Visible    Passwd    ${DELAY}
+    Input Password    Passwd    ${VALID PASSWORD}
+    Click Element    signIn
+    Comment    Verify whether "Home Page" is displayed after login to application with valid credentials.
+    ${loginStatus}    Run Keyword And Return Status    Wait Until Page Contains Element    //div[text()='COMPOSE' and @role='button']    ${intTimeout}
+    ${logoutStatus}=    Verify Element Visible    //div[text()='COMPOSE' and @role='button']
+    [Teardown]    Close Browser

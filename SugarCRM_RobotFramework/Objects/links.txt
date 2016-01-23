@@ -1,0 +1,17 @@
+*** Settings ***
+Documentation     1. This resource file contains all the objects that belong to HYPERLINK category existing in the application or corresponding to a module.
+...
+...               2. Each object is defined in the below mentioned format:
+...
+...               ${ObjectType.ModuleName.ObjectName}
+Resource          objects.txt
+
+*** Variables ***
+${link.common.Dashboard}    //a[contains(text(),'Dashboard')]
+${link.common.Home}    //a[contains(text(),'Home')]
+${link.common.Activities}    //a[contains(text(),'Activities')]
+${link.common.Contacts}    //a[contains(text(),'Contacts')]
+${link.common.Documents}    //a[contains(text(),'Documents')]
+${link.home.logout}    //a[text()='Logout' and contains(@class,'utilsLink')]
+${link.common.Calendar}    //a[contains(text(),'Calendar')]
+${link.common.CreateContact}    //div[@id='div_shortcuts']//a[contains(text(),'Create Contact')]
