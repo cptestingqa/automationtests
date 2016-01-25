@@ -104,7 +104,7 @@ Validate Login With Multiple Credentials From List
     ...
     ...    3. Verify whether "Home Page" is displayed after entering Valid Credentials.
     @{listOfUserNames}=    Create List    Demo    admn    admin
-    @{listOfPasswords}=    Create List    d123    ${SPACE}    admin123
+    @{listOfPasswords}=    Create List    d123    ${SPACE}    admin@123
     @{listOfStatus}=    Create List    Invalid    Invalid    Valid
     ${listOfUserNames}=    Set Variable    @{listOfUserNames}
     ${lengthOfList}=    Get Length    ${listOfUserNames}
