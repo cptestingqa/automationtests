@@ -4,9 +4,9 @@ Resource          super.txt
 
 *** Variables ***
 ${BROWSER}        FireFox
-${LOGIN URL}      http://127.0.0.1:8086/sugarcrm/index.php
+${LOGIN URL}      http://127.0.0.1:8989/sugarcrm/index.php
 ${VALID USERNAME}    admin
-${VALID PASSWORD}    admin123
+${VALID PASSWORD}    admin@123
 ${DELAY}          5s
 ${INVALID USERNAME}    admin
 ${INVALID PASSWORD}    KPN111

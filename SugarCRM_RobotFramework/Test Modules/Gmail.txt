@@ -11,14 +11,21 @@ Validate Gmail Login With Valid Credentials
     Comment    Login to Application with valid credentials.
     ${VALID USERNAME}    Set Variable    cptestingqa
     ${VALID PASSWORD}    Set Variable    tenx@123
-    Start Application    http://www.gmail.com/
+    Start Application    https://accounts.google.com/ServiceLogin
     Comment    Enter username and password for login to application.
-    Wait Until Element Is Visible    Email    ${DELAY}
+    Comment    ${signInButtonStatus}    Run Keyword And Return Status    Wait Until Page Contains Element    //a[text()='Create an account' and @id='gmail-create-account']    ${intTimeout}
+    Comment    ${signInButtonStatus}    Run Keyword And Return Status    Wait Until Page Contains Element    //a[text()='Sign in' and @id='gmail-sign-in']    ${intTimeout}
+    Comment    Run Keyword If    ${signInButtonStatus}    Click Element    //a[text()='Sign in' and @id='gmail-sign-in']
+    ${pg}    Get Source
+    Log    ${pg}
+    Wait Until Element Is Visible    Email    ${intTimeout}
     Input Text    Email    ${VALID USERNAME}
-    Click Element    next
-    Wait Until Element Is Visible    Passwd    ${DELAY}
+    ${nextButtonStatus}    Run Keyword And Return Status    Wait Until Element Is Visible    next    ${DELAY}
+    Run Keyword If    ${nextButtonStatus}    Click Element    next
+    Wait Until Element Is Visible    Passwd    ${intTimeout}
     Input Password    Passwd    ${VALID PASSWORD}
-    Click Element    signIn
+    Wait Until Element Is Visible    //input[@id='signIn' and @type='submit']    ${intTimeout}
+    Click Element    //input[@id='signIn' and @type='submit']
     Comment    Verify whether "Home Page" is displayed after login to application with valid credentials.
     ${loginStatus}    Run Keyword And Return Status    Wait Until Page Contains Element    //div[text()='COMPOSE' and @role='button']    ${intTimeout}
     ${logoutStatus}=    Verify Element Visible    //div[text()='COMPOSE' and @role='button']

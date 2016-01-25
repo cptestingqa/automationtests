@@ -22,10 +22,10 @@ Validate Login With Valid Credentials
     Menu Select    Activities
     Wait Until Element Is Visible    //input[@type='checkbox' and @name='massall']
     Click Element    //input[@type='checkbox' and @name='massall']
-    Wait Until Element Is Visible    //input[@type='button' and @value='Export']
-    Click Element    //input[@type='button' and @value='Export']
-    Wait Until Created    ${downloadFolderPath}\\calls.csv
-    File Should Exist    ${downloadFolderPath}\\calls.csv
+    Comment    Wait Until Element Is Visible    //input[@type='button' and @value='Export']
+    Comment    Click Element    //input[@type='button' and @value='Export']
+    Comment    Wait Until Created    ${downloadFolderPath}\\calls.csv
+    Comment    File Should Exist    ${downloadFolderPath}\\calls.csv
     ${logoutStatus}=    Verify Element Visible    ${link.home.logout}
     Run Keyword If    '${logoutStatus}'=='True'    Click Element    ${link.home.logout}
     [Teardown]    Close Browser
