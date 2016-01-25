@@ -22,4 +22,5 @@ Validate Gmail Login With Valid Credentials
     Comment    Verify whether "Home Page" is displayed after login to application with valid credentials.
     ${loginStatus}    Run Keyword And Return Status    Wait Until Page Contains Element    //div[text()='COMPOSE' and @role='button']    ${intTimeout}
     ${logoutStatus}=    Verify Element Visible    //div[text()='COMPOSE' and @role='button']
+    Log    Last Line Of TC
     [Teardown]    Close Browser
