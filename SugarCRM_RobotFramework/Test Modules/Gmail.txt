@@ -54,7 +54,7 @@ Validate Gmail Login Page
     Run Keyword If    ${nextButtonStatus}==False    Fail    Gmail Login page doesn't displayed.
     [Teardown]    Close Browser
 
-Validate Yahoo Login
+Validate Zoho \ Login
     [Documentation]    1. Login to Application with valid credentials.
     ...
     ...    2. Verify whether "Home Page" is displayed after login to application with valid credentials.
