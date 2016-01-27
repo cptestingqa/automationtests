@@ -79,7 +79,5 @@ Validate Github Login
     ...
     ...    3. Logout from the Application post test case execution.
     Comment    Login to Application with valid credentials.
-    ${VALID USERNAME}    Set Variable    cptestingqa123
-    ${VALID PASSWORD}    Set Variable    tenx@123
     Start Application    https://github.com/
     [Teardown]    Stop Application
