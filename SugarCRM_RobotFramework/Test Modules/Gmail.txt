@@ -30,7 +30,7 @@ Validate Gmail Login With Valid Credentials
     ${loginStatus}    Run Keyword And Return Status    Wait Until Page Contains Element    //div[text()='COMPOSE' and @role='button']    ${intTimeout}
     ${logoutStatus}=    Verify Element Visible    //div[text()='COMPOSE' and @role='button']
     Log    Last Line Of TC
-    [Teardown]    Close Browser
+    [Teardown]    Stop Application
 
 Validate Gmail Login Page
     [Documentation]    1. Login to Application with valid credentials.
@@ -52,7 +52,7 @@ Validate Gmail Login Page
     ${nextButtonStatus}    Run Keyword And Return Status    Wait Until Element Is Visible    next    ${DELAY}
     Run Keyword If    ${nextButtonStatus}    Set Test Message    Gmail Login page was displayed.
     Run Keyword If    ${nextButtonStatus}==False    Fail    Gmail Login page doesn't displayed.
-    [Teardown]    Close Browser
+    [Teardown]    Stop Application
 
 Validate Zoho \ Login
     [Documentation]    1. Login to Application with valid credentials.
@@ -70,4 +70,16 @@ Validate Zoho \ Login
     Run Keyword If    ${nextPageStatus}==False    Fail    Login page was not open
     ${header}    Get Text    //div[@class='main']/h1
     Log    ${header}
-    [Teardown]    Close Browser
+    [Teardown]    Stop Application
+
+Validate Github Login
+    [Documentation]    1. Login to Application with valid credentials.
+    ...
+    ...    2. Verify whether "Home Page" is displayed after login to application with valid credentials.
+    ...
+    ...    3. Logout from the Application post test case execution.
+    Comment    Login to Application with valid credentials.
+    ${VALID USERNAME}    Set Variable    cptestingqa123
+    ${VALID PASSWORD}    Set Variable    tenx@123
+    Start Application    https://github.com/
+    [Teardown]    Stop Application
