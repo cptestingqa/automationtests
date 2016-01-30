@@ -2,7 +2,7 @@
 Resource          ../Keywords/super.txt
 
 *** Test Cases ***
-Validate Zoho \ Login
+Validate Zoho Login Page
     [Documentation]    1. Login to Application with valid credentials.
     ...
     ...    2. Verify whether "Home Page" is displayed after login to application with valid credentials.
